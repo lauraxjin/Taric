@@ -17,36 +17,36 @@ Data is divided in the hierarchical structure specified in the HS handbook(21 Se
   
 ### Class attribute values:
   
-  *control* : Applied to div tags that contains a form that can either update or create rules/chapters. It is also present in all four ejs files.
+  **control** : Applied to div tags that contains a form that can either update or create rules/chapters. It is also present in all four ejs files.
  
 ### Name attribute values:
  
-  *_method* : Applied to the INPUT tag. Posts new chapter in list-chapter.ejs's form area. Update rules(rule name, chapter and description) in one-rule.ejs form.
+  **_method** : Applied to the INPUT tag. Posts new chapter in list-chapter.ejs's form area. Update rules(rule name, chapter and description) in one-rule.ejs form.
   
-  *item[id]* : Applied to the INPUT tag. new chapter to be added is given an id and gets to be stored in an array in couchDB.
+  **item[id]** : Applied to the INPUT tag. new chapter to be added is given an id and gets to be stored in an array in couchDB.
 
-  *item[name]* : Like above, new chapter name added gets to be stored in an array in couchDB.
+  **item[name]** : Like above, new chapter name added gets to be stored in an array in couchDB.
  
-  *item[description]* : Like above, new chapter description added gets to be stored in an array in couchDB.
+  **item[description]** : Like above, new chapter description added gets to be stored in an array in couchDB.
   
-  *name* : In list-rule-name.ejs. It is used for the search function. The 'name' inputed to the search form is compared with the rules we have and returns the rule that matches.
+  **name** : In list-rule-name.ejs. It is used for the search function. The 'name' inputed to the search form is compared with the rules we have and returns the rule that matches.
    
-  *item[rule-name],item[chapter], item[rule]* : In one-rule.ejs. Updated rule informaiton(rule name, chapter, rule description) replaces the existing rule information on this page.
+  **item[rule-name],item[chapter], item[rule]** : In one-rule.ejs. Updated rule informaiton(rule name, chapter, rule description) replaces the existing rule information on this page.
     
 ### Rel attribute values:
   
-  *stylesheet* : For linking stylesheet in the head tag. Present in all four ejs pages.
+  **stylesheet** : For linking stylesheet in the head tag. Present in all four ejs pages.
 
 ## Types
 
-  *chapter* : represent individual chapter to be stored.
+  **chapter** : represent individual chapter to be stored.
   
-  *rule-name* : represent individual rule-name to be stored.
+  **rule-name** : represent individual rule-name to be stored.
 
 ## Properties(id)
 
-  */chapters/* : represent list of chapters. If the update/create has no errors, new chapter related information gets stored in a list and given ids.
+  **/chapters/** : represent list of chapters. If the update/create has no errors, new chapter related information gets stored in a list and given ids.
   
-  */rule-names/* : represent list of rule-names. If the update/create has no errors, new rule related information gets stored in a list and given ids.
+  **/rule-names/** : represent list of rule-names. If the update/create has no errors, new rule related information gets stored in a list and given ids.
   
     
