@@ -13,7 +13,7 @@ Data is divided in the hierarchical structure specified in the HS handbook(21 Se
 
 ### Id attribute values: 
   
-  *publisher* : Applied to all footer tag. The footer has information about orginal publisher of the rules(European Union Trade Commission Official Taric Site), creater(me), editor(me). And it is present in all four ejs files.
+  **publisher** : Applied to all footer tag. The footer has information about orginal publisher of the rules(European Union Trade Commission Official Taric Site), creater(me), editor(me). And it is present in all four ejs files.
   
 ### Class attribute values:
   
