@@ -40,11 +40,13 @@ Data is divided in the hierarchical structure specified in the HS handbook(21 Se
 ## Types
 
   *chapter* : represent individual chapter to be stored.
+  
   *rule-name* : represent individual rule-name to be stored.
 
 ## Properties(id)
 
   */chapters/* : represent list of chapters. If the update/create has no errors, new chapter related information gets stored in a list and given ids.
+  
   */rule-names/* : represent list of rule-names. If the update/create has no errors, new rule related information gets stored in a list and given ids.
   
     
