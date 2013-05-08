@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Election Data: <%=item.name%></title>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <section itemscope itemtype="http://schema.org/CreativeWork"> 
+        <a href="/" itemprop="url"><h1><span itemprop="AlternativeHeadline">Taric Data</span></h1></a>
+    </section>
+    <dl itemscope itemtype="http://schema.org/CreativeWork" itemref="publisher">
+      <dt itemprop="ruleNameHeading" itemscope>Rule Name</dt>
+      <dd itemprop="ruleName"><%=item.name%></dd>
+      <dt itemprop="taricCodeHeading" itemscope>Chapter Number (Taric Code)</dt>
+      <dd itemprop="chapterCode><a itemprop="url href="/chapters/<%=item.chapter%>"><%=item.chapter%></a></dd>
+      <% if (item.rule) { %>
+      <dt itemprop="ruleDescriptionHeading" itemscope>Rule Description</dt>
+      <dd itemprop="ruleDescription"><%=item.rule%></dd>
+      <% } %>
+    </dl>
+
+    <div class="control">
+      <h2 itemprop="ruleUpdateHeading">Update rule-name</h2>
+      <form method="post" action="/rule-names/<%=item._id%>">
+        <input type="hidden" name="_method" value="put">
+        <!-- The line above tells the server to treat this as a PUT request. -->
+        <label>Rule Name: 
+          <input name="item[rule-name]" value="<%=item.name%>" type="text" required
+               placeholder="SECTION I PREPARED FOODSTUFFS; BEVERAGES, SPIRITS AND VINEGAR; TOBACCO AND MANUFACTURED TOBACCO SUBSTITUTES,Cocoa and Cocoa Preparations,Chocolate and other food preparations containing cocoa,Cocoa powder, containing added sugar or other sweetening matter,Containing no sucrose or containing less than 5% by weight of sucrose (including invert sugar expressed as sucrose) or isoglucose expressed as sucrose.">
+        </label>
+        <label>Chapter: 
+          <select name="item[Chapter]" required>
+            <% related_items.forEach(function(related_item) { %>
+            <option value="<%=related_item._id%>"
+              <% if (related_item._id === item.chapter) { %>selected<% } %>>
+              <%=related_item.name%>
+            </option>
+            <% }); %>
+          </select>
+        </label>
+        <label>Rule Description:
+          <input name="item[rule]" value="<%=item.rule%>" type="text" size="1000"> 
+        </label>
+        <button>Update</button>
+      </form>
+    </div>
+    <footer>
+       <p id="publisher">All rules were originally published under the <a itemprop="publisher"
+       href="http://ec.europa.eu/taxation_customs/dds2/taric/taric_consultation.jsp?Lang=en">TARIC Consultation - European Commission</a>.</p>
+       <p itemprop="creator">silsProj/lauraxjin</p>
+       <p itemprop="editor">silsProj/lauraxjin</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Taric Data: <%=item.name%></title>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <section itemscope itemtype="http://schema.org/CreativeWork"> 
+        <a href="/" itemprop="url"><h1><span itemprop="AlternativeHeadline">Taric Data</span></h1></a>
+    </section>
+    <dl itemscope itemtype="http://schema.org/CreativeWork" itemref="publisher">
+      <dt itemprop="chapterNameHeading" itemscope>Chapter name</dt>
+      <dd itemprop="chapterName"><%=item.name%></dd>
+      <% if (item.description) { %>
+      <dt itemprop="chapterDescriptionHeading" itemscope>Description</dt>
+      <dd itemprop="chapterDescription"><%=item.description%></dd>
+      <% } %>
+      <dt itemprop="ruleNamesHeading">rule-names (All)</dt>
+      
+      <dd itemprop="ruleNames">
+        <% if (related_items.length > 0) { %>
+        <ul>
+          <% related_items.forEach(function(related_item) { %>
+          <li itemscope itemtype="http://schema.org/CreativeWork">
+            <a href="/rule-names/<%=related_item._id%>">
+              <%=related_item.name%>
+            </a>
+          </li>
+          <% }); %>
+        </ul>
+        <% } else { %>
+        No rule-names have been added to this party.
+        <% } %>
+      </dd>
+    </dl>
+    <div class="control">
+      <h2>Add a new rule</h2>
+      <form method="post" action="/rule-names/">
+        <input type="hidden" name="item[chapter]" value="<%=item._id%>">
+        <!-- The line above links the candidate to be created to this party. -->
+        <label>Rule name: 
+          <input name="item[name]" type="text" required
+                   placeholder="Chapter 1 SECTION I PREPARED FOODSTUFFS; BEVERAGES, SPIRITS AND VINEGAR; TOBACCO AND MANUFACTURED TOBACCO SUBSTITUTES,Cocoa and Cocoa Preparations,Chocolate and other food preparations containing cocoa,Cocoa powder, containing added sugar or other sweetening matter,Containing no sucrose or containing less than 5% by weight of sucrose (including invert sugar expressed as sucrose) or isoglucose expressed as sucrose.">
+        </label>
+        <label>Rule Description:
+          <input name="item[rule]" type="text" size="1000"
+                   placeholder="Third country duty (01-07-2000) : 8.00 percent     R2204/99">
+        </label>
+        <button>Add</button>
+      </form>
+    </div>
+    <footer>
+      <p id="publisher">All rules were originally published under the <a itemprop="publisher"
+      href="http://ec.europa.eu/taxation_customs/dds2/taric/taric_consultation.jsp?Lang=en">TARIC Consultation - European Commission</a>.</p>
+      <p itemprop="creator">silsProj/lauraxjin</p>
+      <p itemprop="editor">silsProj/lauraxjin</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Taric Data: Chapters</title>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <section itemscope itemtype="http://schema.org/CreativeWork">
+      <a href="/" itemprop="url"><h1><span itemprop="AlternativeHeadline">Taric Data</span></h1></a>
+    </section>
+    <% if (items.length > 0) { %>
+    <ul itemscope itemtype="http://schema.org/CreativeWork">
+      <% items.forEach(function(item) { %>
+      <li itemprop="chapterNames"><a href="/chapters/<%=item._id%>"><%=item.name%></a></li>
+      <% }); %>
+    </ul>
+    <% } else { %>
+    <div>No chapters have been added.</div>
+    <% } %>
+    <div class="control">
+      <h2>Add or update a new Taric Chapter</h2>
+      <script>
+      function onFormSubmit(form) {
+        form.action = form.action + form.elements['item[id]'].value;
+        console.log(form.action);
+        return true;
+      } 
+      </script>
+      <form method="post" action="/chapters/"
+            onsubmit="return onFormSubmit(this);">
+        <!-- The line above dynamically sets the PUT destination when the -->
+        <!-- form is submitted. -------------------------------------------->
+        <input type="hidden" name="_method" value="put">
+        <!-- The line above tells the server to treat this as a PUT request. -->
+        <label>Taric Code<br>
+          (number only, no spaces, ex. xxxxxxxx-xx-xxxx):
+          <input name="item[id]" type="taric" pattern="\d{8}[\-]\d{2}[\-]\d{4}" required
+                 placeholder="01010101-01-0001">
+        </label>
+        <label>Chapter name: 
+          <input name="item[name]" type="text" required
+                 placeholder="Chapter 1">
+        </label>
+        <label>Chapter description:
+          <textarea name="item[description]" cols="80" rows="10" 
+                    placeholder="This chapter is about food and beverages."
+          ></textarea>
+        </label>
+        <button>Add or update</button>
+      </form>
+    </div>
+    <footer itemscope itemtype="http://schema.org/CreativeWork" >
+       <p id="publisher">All rules were originally published under the <a itemprop="publisher"
+       href="http://ec.europa.eu/taxation_customs/dds2/taric/taric_consultation.jsp?Lang=en">TARIC Consultation - European Commission</a>.</p>
+       <p itemprop="creator">silsProj/lauraxjin</p>
+       <p itemprop="editor">silsProj/lauraxjin</p>
+     </footer>
+  </body>
+</html>

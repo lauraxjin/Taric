@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Taric Data: Rule-names</title>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <section itemscope itemtype="http://schema.org/CreativeWork">
+       <a href="/" itemprop="url"><h1><span itemprop="AlternativeHeadline">Taric Data</span></h1></a>
+    </section>
+    <% if (items.length > 0) { %>
+    <ul itemscope itemtype="http://schema.org/CreativeWork">
+      <% items.forEach(function(item) { %>
+      <li itemprop="ruleNames"><a href="/rule-names/<%=item._id%>"><%=item.name%></a></li>
+      <% }); %>
+    </ul>
+    <% } else { %>
+    <div>No rules found.</div>
+    <% } %>
+    <div class="control">
+      <h2>Search for rules by name</h2>
+      <form method="get" action="/rule-names/">
+        <label>rule-name: <input name="name"></label>
+        <button>Search</button>
+      </form>
+    </div>
+    <footer>
+       <p id="publisher">All rules were originally published under the <a itemprop="publisher"
+       href="http://ec.europa.eu/taxation_customs/dds2/taric/taric_consultation.jsp?Lang=en">TARIC Consultation - European Commission</a>.</p>
+       <p itemprop="creator">silsProj/lauraxjin</p>
+       <p itemprop="editor">silsProj/lauraxjin</p>    
+    </footer>
+  </body>
+</html>
